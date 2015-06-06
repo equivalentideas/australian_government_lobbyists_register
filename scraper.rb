@@ -16,7 +16,7 @@ end
 agencies.each do |agency|
   agency_id = agency[:url].match('id=(.*)')[1]
 
-  if !ScraperWiki.select("* FROM agencies WHERE `abn`='#{agency[:abn]}' AND `details_last_updated`='#{agency[:details_last_updated]}'").empty? 
+  if (!ScraperWiki.select("* FROM agencies WHERE `abn`='#{agency[:abn]}' AND `details_last_updated`='#{agency[:details_last_updated]}'").empty? rescue false)
     puts "Skipping existing record agency ID #{agency_id}"
     next
   end
